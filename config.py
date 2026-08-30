@@ -1,6 +1,5 @@
 from enum import Enum
 from pathlib import Path
-from datetime import datetime
 
 MAX_LIMIT_DAY = 14
 LATE_PAYMENT_PENALTY = 10
