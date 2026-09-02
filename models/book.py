@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, date
 from typing import Optional
 from config import GenresBooks, FORMAT_FOR_DATE
 
@@ -16,5 +16,28 @@ class Book:
     available_copies: Optional[int] = None
 
 
-    def __post_init__():
-        pass
+    def __post_init__(self):
+        if not self.title.strip():
+            raise ValueError('Название не может быть пустым')
+        
+        if not self.author.strip():
+            raise ValueError('Автор не может быть пустым')
+
+        isbn = self.isbn
+        isbn_clean = ''.join(filter(str.isdigit, isbn))
+        if len(isbn_clean) not in (10, 13):
+            raise ValueError('Некорректный isbn')
+
+        year = self.year
+        now_year = date.today().year
+        if not (1 <= year <= now_year):
+            raise ValueError(f"Год должен быть от 1000 до {now_year}")
+
+        if not isinstance(self.genre, GenresBooks):
+            raise ValueError('Некорректный жанр')
+
+        if self.total_copies < 0:
+            raise ValueError('Число не может быть отрицательным')
+
+        if self.available_copies > self.total_copies:
+            raise ValueError('Остаток не может быть больше наличия')
