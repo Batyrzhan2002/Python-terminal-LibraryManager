@@ -31,13 +31,15 @@ class Book:
         year = self.year
         now_year = date.today().year
         if not (1 <= year <= now_year):
-            raise ValueError(f"Год должен быть от 1000 до {now_year}")
+            raise ValueError(f"Год должен быть от 1 до {now_year}")
 
         if not isinstance(self.genre, GenresBooks):
             raise ValueError('Некорректный жанр')
 
-        if self.total_copies < 0:
-            raise ValueError('Число не может быть отрицательным')
+        if self.total_copies <= 0:
+            raise ValueError('Количество экземпляров должно быть больше 0')
 
-        if self.available_copies > self.total_copies:
-            raise ValueError('Остаток не может быть больше наличия')
+        if self.available_copies is None:
+            self.available_copies = self.total_copies
+        elif self.available_copies > self.total_copies:
+            raise ValueError('Доступных экземпляров не может быть больше общего количества')

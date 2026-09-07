@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
-year = date.today().year
-print(type(year))
+now_date = datetime.now
+print(now_date.year)
