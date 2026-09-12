@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime, date
-from typing import Optional
+from datetime import datetime
 from config import FORMAT_FOR_DATE
 
 
