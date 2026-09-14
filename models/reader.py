@@ -42,3 +42,26 @@ class Reader:
             raise ValueError('Читатель должен быть старше 6 лет')
 
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'full_name': self.full_name,
+            'email': self.email,
+            'phone': self.phone,
+            'address': self.address,
+            'birth_date': self.birth_date,
+            'is_blocked': self.is_blocked,
+        }
+
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            id = data['id'],
+            full_name = data['full_name'],
+            email = data['email'],
+            phone = data['phone'],
+            address = data['address'],
+            birth_date = data['birth_date'],
+            is_blocked = data.get('is_blocked', False)
+        )

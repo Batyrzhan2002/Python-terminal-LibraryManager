@@ -38,3 +38,28 @@ class Loan:
             
             if return_date < loan_date:
                 raise ValueError('Дата возврата указана неверно')
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'book_id': self.book_id,
+            'reader_id': self.reader_id,
+            'loan_date': self.loan_date,
+            'due_date': self.due_date,
+            'return_date': self.return_date,
+            'fine': self.fine,
+        }
+
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            id = data['id'],
+            book_id = data['book_id'],
+            reader_id = data['reader_id'],
+            loan_date = data['loan_date'],
+            due_date = data['due_date'],
+            return_date = data.get('return_date', None),
+            fine = data.get('fine', 0)
+        )
