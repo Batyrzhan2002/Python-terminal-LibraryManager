@@ -92,7 +92,7 @@ class LoanService:
         today = datetime.now()
         for loan in self.loan_repo.get_all():
             if loan.return_date is None:
-                due = datetime.strptime(loan.due_date, LATE_PAYMENT_PENALTY)
+                due = datetime.strptime(loan.due_date, FORMAT_FOR_DATE)
                 if today > due:
                     overdue.append(loan)
         return overdue
