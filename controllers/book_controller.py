@@ -13,7 +13,7 @@ class BookController:
             print('3. Найти по ID')
             print('4. Редактировать')
             print('5. Удалить')
-            print('6. Пойск по автору/названию')
+            print('6. Поиск по автору/названию')
             print('0. Назад')
 
             try:
@@ -38,6 +38,7 @@ class BookController:
                 break
             else:
                 print('Неверный выбор')
+
 
     def show_all_books(self):
         books = self.book_service.get_all()
@@ -186,7 +187,7 @@ ISBN: {book.isbn}
 
 
     def search_book_view(self):
-        keyword = input('Введите слово для пойска: ').lower()
+        keyword = input('Введите слово для поиска: ').lower()
         if not keyword:
             print('Введите слово')
             return
@@ -202,4 +203,4 @@ ISBN: {book.isbn}
             return
 
         for book in found:
-            print(f'ID: {book.id}, {book.tile} - {book.author}')
+            print(f'ID: {book.id}, {book.title} - {book.author}')
